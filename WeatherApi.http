@@ -1,0 +1,24 @@
+@WeatherApi_HostAddress = http://localhost:5012
+
+GET {{WeatherApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+# POST {{ContosoPizza_HostAddress}}/pizza/
+# Content-Type: application/json
+
+# {
+#     "name": "Hawaii",
+#     "isGlutenFree": false
+# }
+
+# PUT {{ContosoPizza_HostAddress}}/pizza/3
+# Content-Type: application/json
+
+# {
+#     "id": 3,
+#     "name": "Hawaiian",
+#     "isGlutenFree": false
+# }
+
+# DELETE {{ContosoPizza_HostAddress}}/pizza/4
