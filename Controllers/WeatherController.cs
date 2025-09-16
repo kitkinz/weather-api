@@ -8,14 +8,28 @@ namespace WeatherApi.Controllers;
 [Route("[controller]")]
 public class WeatherController : ControllerBase
 {
-    public WeatherController()
+    private readonly WeatherService _weatherService;
+    public WeatherController(WeatherService weatherService)
     {
-
+        _weatherService = weatherService;
     }
 
-    [HttpGet]
-    public IEnumerable<Weather> Get()
+    // [HttpGet]
+    // public IEnumerable<Weather> Get()
+    // {
+    //     return WeatherService.GetForecast();
+    // }
+
+    [HttpGet("{city}")]
+    public async Task<IActionResult> GetWeather(string city)
     {
-        return WeatherService.GetForecast();
+        var result = await _weatherService.GetWeatherAsync(city);
+
+        if (result == null)
+        {
+            return NotFound(new { message = "weather data not available" });
+        }
+
+        return Ok(result);
     }
 }

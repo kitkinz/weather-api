@@ -1,6 +1,9 @@
 @WeatherApi_HostAddress = http://localhost:5012
 
-GET {{WeatherApi_HostAddress}}/weather/
+# GET {{WeatherApi_HostAddress}}/weather/
+# Accept: application/json
+
+GET {{WeatherApi_HostAddress}}/weather/Barlig
 Accept: application/json
 
 ###
