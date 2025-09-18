@@ -3,7 +3,7 @@
 # GET {{WeatherApi_HostAddress}}/weather/
 # Accept: application/json
 
-GET {{WeatherApi_HostAddress}}/weather/Barlig
+GET {{WeatherApi_HostAddress}}/weather/Baguio
 Accept: application/json
 
 ###
