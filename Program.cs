@@ -1,5 +1,7 @@
+using System.Threading.RateLimiting;
 using StackExchange.Redis;
 using WeatherApi.Services;
+using Microsoft.AspNetCore.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +35,16 @@ builder.Services.AddSingleton<IDatabase>(sp =>
     return muxer.GetDatabase();
 });
 
+builder.Services.AddRateLimiter(options => {
+    options.AddFixedWindowLimiter("fixed", opt =>
+    {
+        opt.PermitLimit = 20; // Allow 5 requests
+        opt.Window = TimeSpan.FromSeconds(10); // Per 10 seconds
+        opt.QueueLimit = 0; // No queued requests
+        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,5 +54,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.MapControllers();
+app.UseRateLimiter();
+app.MapControllers().RequireRateLimiting("fixed");
 app.Run();
