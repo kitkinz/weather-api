@@ -1,18 +1,17 @@
 # 🌦️ Weather API
-A simple C# .NET Web API that fetches and returns weather data from a third-party provider.  
-Instead of maintaining our own dataset, this project integrates with external APIs (e.g., [Visual Crossing Weather API](https://www.visualcrossing.com/weather-api)).
+A simple C# .NET Web API that fetches and returns weather data from a third-party provider.
 
 [Project Task on Roadmap.sh](https://roadmap.sh/projects/weather-api-wrapper-service)
 
 ## 🚀 Features
-- Fetch real-time weather data from a 3rd party API  
+- Fetch real-time weather data from a 3rd party API [Visual Crossing Weather API](https://www.visualcrossing.com/weather-api)
 - Use in-memory caching (e.g., Redis) to reduce unnecessary API calls  
 - Configurable API keys and settings via environment variables  
-- Automatic cache expiration (e.g., 12 hours) for fresh results
+- Automatic cache expiration (e.g., 1 hour) for fresh results
 
 ## 🛠️ Tech Stack
 - **.NET 6+** (ASP.NET Core Web API)  
-- **Redis** (recommended for caching)  
+- **Redis** (In-memory caching)  
 
 ## Installation
 Follow these steps to run this application:
