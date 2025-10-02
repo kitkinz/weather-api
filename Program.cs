@@ -17,14 +17,23 @@ builder.Services.AddHttpClient<WeatherService>();
 // Infrastructure
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 {
-    var configuration = new ConfigurationOptions
-    {
-        EndPoints = { { "redis-10926.c295.ap-southeast-1-1.ec2.redns.redis-cloud.com", 10926 } },
-        User = "default",
-        Password = "KulCAxwRt3RHj313Z7QrqcJT7JTQkVp2",
-        AbortOnConnectFail = false,
-        Ssl = true,
-    };
+    // Uncomment for redis cloud configuration
+    // var configuration = builder.Configuration.GetSection("Redis");
+    // var options = new ConfigurationOptions
+    // {
+    //     AbortOnConnectFail = false,
+    //     Ssl = configuration.GetValue<bool>("Ssl"),
+    //     User = configuration.GetValue<string>("User"),
+    //     Password = configuration.GetValue<string>("Password")
+    // };
+    // var host = configuration.GetValue<string>("Host");
+
+    // if (string.IsNullOrEmpty(host))
+    // {
+    //     throw new InvalidOperationException("Redis host configuration is missing");
+    // }
+
+    // options.EndPoints.Add(host, configuration.GetValue<int>("Port"));
 
     return ConnectionMultiplexer.Connect("localhost");
 });
@@ -35,7 +44,8 @@ builder.Services.AddSingleton<IDatabase>(sp =>
     return muxer.GetDatabase();
 });
 
-builder.Services.AddRateLimiter(options => {
+builder.Services.AddRateLimiter(options =>
+{
     options.AddFixedWindowLimiter("fixed", opt =>
     {
         opt.PermitLimit = 20; // Allow 20 requests
