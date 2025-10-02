@@ -38,7 +38,7 @@ builder.Services.AddSingleton<IDatabase>(sp =>
 builder.Services.AddRateLimiter(options => {
     options.AddFixedWindowLimiter("fixed", opt =>
     {
-        opt.PermitLimit = 20; // Allow 5 requests
+        opt.PermitLimit = 20; // Allow 20 requests
         opt.Window = TimeSpan.FromSeconds(10); // Per 10 seconds
         opt.QueueLimit = 0; // No queued requests
         opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;

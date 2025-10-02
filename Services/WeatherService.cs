@@ -22,7 +22,7 @@ public class WeatherService
     {
         var cachedResult = await _redis.StringGetAsync(city);
 
-        if (!string.IsNullOrEmpty(cachedResult))
+        if (!cachedResult.IsNullOrEmpty)
         {
             Console.WriteLine($"Cached: {city}");
             return JsonSerializer.Deserialize<Weather>(cachedResult);
