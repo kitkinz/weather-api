@@ -28,8 +28,8 @@ cd WeatherApi
 ```
 docker run -d --name redis -p 6379:6379 redis
 ```
-    - Stop the Redis container: `docker stop redis`
-    - Start the Redis container: `docker start redis`
+- Stop the Redis container: `docker stop redis`
+- Start the Redis container: `docker start redis`
 4. Restore dependencies:
 ```
 dotnet restore
@@ -45,5 +45,6 @@ dotnet run
 
 ## Usage
 Endpoint: `localhost:{port}/{city}`
+<br />
 You can use Postman to test the rate limiter for API requests but
 make sure to comment out the checking of cached results in WeatherService.cs.
