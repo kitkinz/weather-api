@@ -17,24 +17,6 @@ builder.Services.AddHttpClient<WeatherService>();
 // Infrastructure
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 {
-    // Uncomment for redis cloud configuration
-    // var configuration = builder.Configuration.GetSection("Redis");
-    // var options = new ConfigurationOptions
-    // {
-    //     AbortOnConnectFail = false,
-    //     Ssl = configuration.GetValue<bool>("Ssl"),
-    //     User = configuration.GetValue<string>("User"),
-    //     Password = configuration.GetValue<string>("Password")
-    // };
-    // var host = configuration.GetValue<string>("Host");
-
-    // if (string.IsNullOrEmpty(host))
-    // {
-    //     throw new InvalidOperationException("Redis host configuration is missing");
-    // }
-
-    // options.EndPoints.Add(host, configuration.GetValue<int>("Port"));
-
     return ConnectionMultiplexer.Connect("localhost");
 });
 
