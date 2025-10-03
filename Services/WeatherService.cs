@@ -10,10 +10,10 @@ public class WeatherService
     private readonly string _apiKey;
     private readonly IDatabase _redis;
 
-    public WeatherService(HttpClient httpClient, IDatabase redis)
+    public WeatherService(HttpClient httpClient, IDatabase redis, IConfiguration config)
     {
         _httpClient = httpClient;
-        _apiKey = Environment.GetEnvironmentVariable("VISUAL_CROSSING_API_KEY")
+        _apiKey = config["ApiKeys:VisualCrossing"]
                 ?? throw new InvalidOperationException("API key not found in environment variables.");
         _redis = redis;
     }
